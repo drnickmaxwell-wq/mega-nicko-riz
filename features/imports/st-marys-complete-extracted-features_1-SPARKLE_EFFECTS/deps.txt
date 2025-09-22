@@ -1,0 +1,8 @@
+# Dependencies for Sparkle Effects
+
+# UI components (if not already installed)
+pnpm dlx shadcn-ui@latest add button
+
+# No additional npm packages required
+# Uses CSS animations and React hooks
+

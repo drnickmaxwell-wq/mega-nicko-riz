@@ -1,0 +1,11 @@
+# Dependencies for Coastal Waves
+
+# No additional npm packages required
+# Uses built-in Canvas API and Next.js dynamic imports
+
+# Ensure you have the base project dependencies:
+# - next
+# - react
+# - typescript
+# - tailwindcss
+

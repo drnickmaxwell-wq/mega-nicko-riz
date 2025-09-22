@@ -1,0 +1,6 @@
+C:\Users\JoDobson\Documents\mega-OMG\app\preview\manus\page.tsx
+C:\Users\JoDobson\Documents\mega-OMG\app\preview\manus\_client.tsx
+C:\Users\JoDobson\Documents\mega-OMG\app\preview\manus\home-ink\page.tsx
+C:\Users\JoDobson\Documents\mega-OMG\app\preview\manus\home-ink\_client.tsx
+C:\Users\JoDobson\Documents\mega-OMG\app\preview\manus\home-light\page.tsx
+C:\Users\JoDobson\Documents\mega-OMG\app\preview\manus\home-light\_client.tsx

@@ -1,0 +1,14 @@
+# Dependencies for AI Concierge Chatbot
+
+# Core AI dependencies
+pnpm add ai @ai-sdk/openai @ai-sdk/anthropic
+
+# UI components (if not already installed)
+pnpm dlx shadcn-ui@latest add button input
+
+# Icons
+pnpm add lucide-react
+
+# Optional: Voice recognition (browser APIs used, no additional deps)
+# Optional: Emotion detection (built-in sentiment analysis)
+

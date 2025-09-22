@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Lora:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Brand Colors - Luxury Coastal Theme */
+  --magenta: #C2185B;
+  --turquoise: #40C4B4;
+  --gold: #D4AF37;
+  
+  /* Neutral Colors */
+  --background: #F7F7F9;
+  --foreground: #1A1C1F;
+  --surface: #FFFFFF;
+  --muted: #6A6F7A;
+  
+  /* Luxury Effects */
+  --glow-magenta: 0 0 20px rgba(194, 24, 91, 0.3);
+  --glow-turquoise: 0 0 20px rgba(64, 196, 180, 0.3);
+  --glow-gold: 0 0 20px rgba(212, 175, 55, 0.3);
+  
+  --radius: 18px;
+  --max-width: 1200px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: 'Montserrat', sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0F1419;
+    --foreground: #E2E8F0;
+    --surface: #1A1F2E;
+    --muted: #94A3B8;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Lora', serif;
+  scroll-behavior: smooth;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+/* Luxury Animations */
+@keyframes shimmer {
+  0% { 
+    background-position: -200% 0; 
+  }
+  100% { 
+    background-position: 200% 0; 
+  }
+}
+
+@keyframes caustics {
+  0%, 100% { 
+    transform: scale(1) rotate(0deg);
+    opacity: 0.3;
+  }
+  33% { 
+    transform: scale(1.05) rotate(2deg);
+    opacity: 0.4;
+  }
+  66% { 
+    transform: scale(1.1) rotate(-2deg);
+    opacity: 0.5;
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+/* Utility Classes */
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.animate-caustics {
+  animation: caustics 8s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+/* Luxury Text Effects */
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 215, 0, 1) 25%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 215, 0, 1) 75%,
+    rgba(255, 255, 255, 0.8) 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-shimmer,
+  .animate-caustics,
+  .animate-sparkle {
+    animation: none;
+  }
+  
+  body {
+    scroll-behavior: auto;
+  }
+}
+

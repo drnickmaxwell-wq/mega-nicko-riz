@@ -1,0 +1,27 @@
+name: Safety Rails
+on: [pull_request]
+jobs:
+  fence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - run: |
+          base="${{ github.base_ref }}"
+          git fetch origin "$base"
+          DIFF=$(git diff --name-status origin/$base...HEAD)
+          echo "$DIFF" | awk '$1=="D"{print $2}' > del.txt
+          if grep -E '^(app/|components/|public/|lib/)' del.txt; then echo "Deletion in protected paths"; exit 1; fi
+  agent-only:
+    runs-on: ubuntu-latest
+    if: startsWith(github.head_ref, 'agent/')
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - run: |
+          base="${{ github.base_ref }}"
+          git fetch origin "$base"
+          CHANGED=$(git diff --name-only origin/$base...HEAD)
+          echo "$CHANGED" > changed.txt
+          if grep -vE '^(components/agent/|lib/seo/|features/seo/|docs/|.github/|.gitignore|.gitattributes|postcss\.config\.js|tailwind\.config\.(js|ts)|app/globals\.css|package\.json|package-lock\.json)$' changed.txt; then
+            echo "Agent touched forbidden paths"; exit 1; fi

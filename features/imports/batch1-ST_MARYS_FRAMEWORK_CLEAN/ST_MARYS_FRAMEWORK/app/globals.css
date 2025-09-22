@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Lora:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 247 247 249; /* #F7F7F9 */
+    --foreground: 26 28 31; /* #1A1C1F */
+    --card: 255 255 255;
+    --card-foreground: 26 28 31;
+    --popover: 255 255 255;
+    --popover-foreground: 26 28 31;
+    --primary: 194 24 91; /* #C2185B */
+    --primary-foreground: 255 255 255;
+    --secondary: 64 196 180; /* #40C4B4 */
+    --secondary-foreground: 255 255 255;
+    --muted: 247 247 249;
+    --muted-foreground: 107 114 128;
+    --accent: 212 175 55; /* #D4AF37 */
+    --accent-foreground: 255 255 255;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --border: 229 231 235;
+    --input: 229 231 235;
+    --ring: 194 24 91;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 26 28 31;
+    --foreground: 247 247 249;
+    --card: 26 28 31;
+    --card-foreground: 247 247 249;
+    --popover: 26 28 31;
+    --popover-foreground: 247 247 249;
+    --primary: 194 24 91;
+    --primary-foreground: 255 255 255;
+    --secondary: 64 196 180;
+    --secondary-foreground: 255 255 255;
+    --muted: 39 39 42;
+    --muted-foreground: 161 161 170;
+    --accent: 212 175 55;
+    --accent-foreground: 255 255 255;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --border: 39 39 42;
+    --input: 39 39 42;
+    --ring: 194 24 91;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-lora;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-montserrat;
+  }
+
+  /* Accessibility improvements */
+  .skip-link {
+    @apply absolute -top-10 left-6 z-50 bg-primary text-white px-4 py-2 rounded-md;
+    @apply focus:top-6 transition-all duration-200;
+  }
+
+  /* Focus styles */
+  .focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Button variants */
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-secondary text-white font-semibold px-6 py-3 rounded-lg;
+    @apply hover:shadow-lg hover:scale-105 transition-all duration-300;
+    @apply focus-visible;
+  }
+
+  .btn-secondary {
+    @apply bg-gradient-to-r from-secondary to-accent text-white font-semibold px-6 py-3 rounded-lg;
+    @apply hover:shadow-lg hover:scale-105 transition-all duration-300;
+    @apply focus-visible;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary font-semibold px-6 py-3 rounded-lg;
+    @apply hover:bg-primary hover:text-white transition-all duration-300;
+    @apply focus-visible;
+  }
+
+  /* Card styles */
+  .card-luxury {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-xl;
+    @apply hover:shadow-2xl transition-all duration-300;
+  }
+
+  .card-glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl;
+    @apply shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+
+  /* Text gradients */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  /* Wave background */
+  .wave-background {
+    background: linear-gradient(135deg, 
+      rgba(194, 24, 91, 0.03) 0%, 
+      rgba(64, 196, 180, 0.03) 50%, 
+      rgba(212, 175, 55, 0.03) 100%);
+    position: relative;
+  }
+
+  .wave-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(194, 24, 91, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(64, 196, 180, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* Luxury animations */
+  .animate-float {
+    animation: wave 3s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .animate-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+
+  /* Loading states */
+  .loading-skeleton {
+    @apply bg-gray-200 animate-pulse rounded;
+  }
+
+  .loading-spinner {
+    @apply animate-spin rounded-full border-2 border-gray-300 border-t-primary;
+  }
+}
+
+@layer utilities {
+  /* Spacing utilities */
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Typography utilities */
+  .heading-xl {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold font-montserrat;
+  }
+
+  .heading-lg {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold font-montserrat;
+  }
+
+  .heading-md {
+    @apply text-2xl md:text-3xl lg:text-4xl font-semibold font-montserrat;
+  }
+
+  .heading-sm {
+    @apply text-xl md:text-2xl font-semibold font-montserrat;
+  }
+
+  .body-lg {
+    @apply text-lg md:text-xl font-lora;
+  }
+
+  .body-md {
+    @apply text-base md:text-lg font-lora;
+  }
+
+  .body-sm {
+    @apply text-sm md:text-base font-lora;
+  }
+
+  /* Layout utilities */
+  .full-bleed {
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr min(65ch, 100%) 1fr;
+  }
+
+  .content-grid > * {
+    grid-column: 2;
+  }
+
+  .content-grid > .full-bleed {
+    grid-column: 1 / -1;
+  }
+}
+
