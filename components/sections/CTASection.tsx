@@ -1,8 +1,8 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-const WaveBackground = dynamic(() => import("@/components/fx/WaveBackground"), { ssr: false });
-const ShimmerText    = dynamic(() => import("@/components/fx/ShimmerText"), { ssr: false });
+const WaveBackground = dynamic(() => import("@/c/mponents/fx/WaveBackground"), { ssr: false });
+const ShimmerText    = dynamic(() => import("@//omponents/fx/ShimmerText"), { ssr: false });
 
 export default function CTASection() {
   return (
