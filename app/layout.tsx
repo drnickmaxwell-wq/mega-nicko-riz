@@ -10,8 +10,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-        <link rel="preload" as="image" href="/video/hero/hero-poster.jpg" />
-        <link rel="preload" as="image" href="/videos/hero-poster.jpg" />
+          <link rel="preload" as="image" href="/videos/hero/hero-poster.jpg" />
       </head>
       <body style={{ background: "var(--bg)", color: "var(--ink)" }}>
         {children}
